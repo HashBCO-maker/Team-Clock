@@ -1,0 +1,39 @@
+{
+  "name": "team-clock-widget",
+  "productName": "Team Clock",
+  "version": "1.0.0",
+  "description": "Desktop widget showing Melbourne, Brisbane, Adelaide and Colombo time",
+  "main": "main.js",
+  "author": "Team",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac"
+  },
+  "devDependencies": {
+    "electron": "33.2.1",
+    "electron-builder": "25.1.8"
+  },
+  "build": {
+    "appId": "com.team.clockwidget",
+    "productName": "Team Clock",
+    "files": ["main.js", "preload.js", "index.html"],
+    "win": {
+      "target": ["nsis", "portable"],
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "portable": {
+      "artifactName": "TeamClock-Portable-${version}.exe"
+    },
+    "mac": {
+      "target": [{ "target": "dmg", "arch": ["universal"] }],
+      "category": "public.app-category.productivity"
+    }
+  }
+}
